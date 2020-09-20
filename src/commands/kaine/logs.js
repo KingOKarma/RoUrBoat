@@ -15,7 +15,7 @@ module.exports = {
 
 
 
-        exec(`pm2 logs --nostream "${args.join(' ')}"`, (error, stdout, stderr) => {
+        exec(`pm2 logs 7 --nostream "${args.join(' ')}"`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 message.channel.send("I cant check pm2 logs <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```")
