@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 module.exports = {
-    name: 'restart',
-    aliases: ["reboot"],
+    name: 'pm2',
+    aliases: ["pm2logs"],
     run: async (_, message, args, bot, token, client) => {
 
         if (message.author.id != "406211463125008386") return message.channel.send("This is a Owner only comamnd! <:RoScreaming:719628209402019980>")
