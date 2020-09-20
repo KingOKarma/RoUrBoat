@@ -36,6 +36,8 @@ module.exports = {
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
+                message.channel.send(`Git pull request: \n\`\`\`${stdout}\`\`\``)
+                message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\``);
                 return;
             }
             console.log(`stdout: ${stdout}`);

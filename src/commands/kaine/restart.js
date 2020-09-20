@@ -5,7 +5,7 @@ module.exports = {
     run: async (_, message, args, bot, token, client) => {
         if(!message.guild.me.permissionsIn(message.channel).has("EMBED_LINKS")) return message.channel.send("I need the permission __**\"Embed Links\"**__ to use this command")
 
-        if (message.author.id != "406211463125008386") return message.channel.send("This is a Owner only comamnd! <:Kaineshrug:711591140125704242>")
+        if (message.author.id != "406211463125008386") return message.channel.send("This is a Owner only comamnd! <:RoScreaming:719628209402019980>")
 
         var pm2 = require('pm2');
 
