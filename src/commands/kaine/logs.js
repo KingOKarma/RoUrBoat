@@ -23,15 +23,17 @@ module.exports = {
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
-                message.channel.send(`pm2 logs request: \n\`\`\`${stderr}\`\`\``)
+                message.channel.send(`pm2 logs request: \n\`\`\`js${stderr}\`\`\``)
 
                 return;
             }
             console.log(`stdout: ${stdout}`);
-            message.channel.send(`pm2 logs request: \n\`\`\`${stdout}\`\`\``)
+            message.channel.send(`pm2 logs request: \n\`\`\`js${stdout}\`\`\``)
 
         })
 
+
+        message.channel.send("logfile:", { files: ["../../../../../.pm2/logs/RoUrBoat-out.log"] });
 
 
 
