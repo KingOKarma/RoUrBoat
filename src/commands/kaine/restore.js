@@ -1,8 +1,8 @@
 
 
 module.exports = {
-    name: 'pull',
-    aliases: ["gitpull"],
+    name: 'restore',
+    aliases: ["gitrestore"],
 
     run: (_, message, args) => {
 
@@ -28,10 +28,13 @@ module.exports = {
 
 
 
-        exec("git pull", (error, stdout, stderr) => {
+        exec(`git restore --staged ${args.join(' ')}`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
-                message.channel.send("I cant pull the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
+                process.chdir('./src');
+                console.log('erroed so new directory: ' + process.cwd());
+                message.channel.send("I cant restore those files from that repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
+                
                 return;
             }
             if (stderr) {
@@ -39,21 +42,25 @@ module.exports = {
                 return;
             }
             console.log(`stdout: ${stdout}`);
-            message.channel.send(`Git pull request: \n\`\`\`${stdout}\`\`\``)
+            message.channel.send(`Git restore request: \nFile(s) have been restored! use \`rbstatus\` to check which files!`)
             message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\``);
 
+
+
+
+            console.log('Final directory: ' + process.cwd());
+            try {
+                process.chdir('./src');
+                console.log('New directory: ' + process.cwd());
+              }
+              catch (err) {
+                console.log('chdir: ' + err);
+                return
+              }
+
+
+
         })
-
-        console.log('Final directory: ' + process.cwd());
-        try {
-            process.chdir('./src');
-            console.log('New directory: ' + process.cwd());
-          }
-          catch (err) {
-            console.log('chdir: ' + err);
-            return
-          }
-
 
 
 

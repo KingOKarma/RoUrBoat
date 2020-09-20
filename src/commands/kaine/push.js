@@ -1,8 +1,8 @@
 
 
 module.exports = {
-    name: 'pull',
-    aliases: ["gitpull"],
+    name: 'push',
+    aliases: ["gitpush"],
 
     run: (_, message, args) => {
 
@@ -28,10 +28,10 @@ module.exports = {
 
 
 
-        exec("git pull", (error, stdout, stderr) => {
+        exec("git push", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
-                message.channel.send("I cant pull the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
+                message.channel.send("I cant push to the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
                 return;
             }
             if (stderr) {
@@ -39,10 +39,11 @@ module.exports = {
                 return;
             }
             console.log(`stdout: ${stdout}`);
-            message.channel.send(`Git pull request: \n\`\`\`${stdout}\`\`\``)
+            message.channel.send(`Git push request: \n\`\`\`${stdout}\`\`\``)
             message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\``);
 
         })
+
 
         console.log('Final directory: ' + process.cwd());
         try {
@@ -53,7 +54,6 @@ module.exports = {
             console.log('chdir: ' + err);
             return
           }
-
 
 
 

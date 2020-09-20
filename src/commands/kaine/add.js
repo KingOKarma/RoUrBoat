@@ -1,8 +1,8 @@
 
 
 module.exports = {
-    name: 'pull',
-    aliases: ["gitpull"],
+    name: 'add',
+    aliases: ["gitadd"],
 
     run: (_, message, args) => {
 
@@ -28,19 +28,19 @@ module.exports = {
 
 
 
-        exec("git pull", (error, stdout, stderr) => {
+        exec(`git add ${args.join(' ')}`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
-                message.channel.send("I cant pull the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
+                message.channel.send("I cant add to the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
                 return;
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
+                message.channel.send(`uh oh problemo\n\`\`\`js${stderr}\`\`\``)
                 return;
             }
             console.log(`stdout: ${stdout}`);
-            message.channel.send(`Git pull request: \n\`\`\`${stdout}\`\`\``)
-            message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\``);
+            message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\`\nAdded! use \`rbstatus\` to check files`);
 
         })
 
