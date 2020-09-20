@@ -33,7 +33,10 @@ module.exports = {
         })
 
 
-        message.channel.send("logfile:", { files: ["../../../../../.pm2/logs/RoUrBoat-out.log"] });
+        message.channel.send("logfile:", { files: [
+            "/home/karma/.pm2/logs/RoUrBoat-out.log",
+            "/home/karma/.pm2/logs/RoUrBoat-error.log"
+        ] });
 
 
 
