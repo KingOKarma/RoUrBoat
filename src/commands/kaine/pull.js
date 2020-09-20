@@ -1,5 +1,4 @@
 
-const config = require('../../config.json');
 
 module.exports = {
     name: 'pull',
@@ -7,20 +6,31 @@ module.exports = {
 
     run: (_, message, args) => {
 
-
+        if (message.author.id != "406211463125008386") {
+            message.reply("Sorry This command can only be used by Kaine >:( this is just so you guys dont break anything!")
+        }
 
 
         const { exec } = require("child_process");
-        let cmd = "nah"
+        
+
+        console.log('Starting directory: ' + process.cwd());
+        try {
+            process.chdir('../');
+            console.log('New directory: ' + process.cwd());
+          }
+          catch (err) {
+            console.log('chdir: ' + err);
+            return
+          }
 
 
-        if(config.os = "Windows") cmd = "dir"
-        else if(config.os = "Linux") cmd = "ls"
 
 
-        exec(cmd, (error, stdout, stderr) => {
+        exec("git pull", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
+                message.channel.send("I cant pull the repo for some reason <:RoScreaming:719628209402019980>\n That reason being " + err)
                 return;
             }
             if (stderr) {
@@ -28,7 +38,10 @@ module.exports = {
                 return;
             }
             console.log(`stdout: ${stdout}`);
-        });
+            message.channel.send(`Git pull request: \n\`\`\`${stdout}\`\`\``)
+            message.channel.send(`\`\`\`Current directory: ${process.cwd()}\`\`\``);
+
+        })
 
 
 
