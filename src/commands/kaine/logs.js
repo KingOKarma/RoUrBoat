@@ -4,35 +4,39 @@ module.exports = {
     aliases: ["pm2logs"],
     run: async (_, message, args, bot, token, client) => {
 
-        if (message.author.id != "406211463125008386") return message.channel.send("This is a Owner only comamnd! <:RoScreaming:719628209402019980>")
+        if (message.author.id != "406211463125008386") {
+            message.reply("Sorry This command can only be used by Kaine >:( this is just so you guys dont break anything!")
+            return
+        }
 
-        var pm2 = require('pm2');
 
-        pm2.connect(function (err) {
-            if (err) {
-                console.error(err);
-                process.exit(0);
+        const { exec } = require("child_process");
+        
+
+
+
+        exec(`pm2 logs --nostream "${args.join(' ')}"`, (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                message.channel.send("I cant check pm2 logs <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```")
+                return;
             }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                message.channel.send(`pm2 logs request: \n\`\`\`${stderr}\`\`\``)
 
-            pm2.logs('RoUrBoat', function (err) {
-                pm2.disconnect();   // Disconnects from PM2
-                if (err) throw err
-            });
-        });
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+            message.channel.send(`pm2 logs request: \n\`\`\`${stdout}\`\`\``)
 
-
-
-        // const usedCommandRecentllyk = new Set();
-        // if (usedCommandRecentllyk.has(message.author.id)) {
-
-        // } else {
-            const embed = new Discord.MessageEmbed()
-            .setDescription(`✅ **Restarting...** <:RoScreaming:719628209402019980> \n*Try using a command in about 5 seconds, if no response please check logs!* <a:nod:756404820125941821>`)
-
-        message.channel.send(embed)
-        .catch(() => {
-            message.reply("**I cant send embeds but im restarting!** <:RoScreaming:719628209402019980>")
         })
+
+
+
+
+
+
     }
 
 

@@ -31,11 +31,14 @@ module.exports = {
         exec(`git add ${args.join(' ')}`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
+                process.chdir('./src');
                 message.channel.send("I cant add to the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nuse `rbstatus` To check for files!")
                 return;
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
+                process.chdir('./src');
+
                 message.channel.send(`uh oh problemo\n\`\`\`js${stderr}\`\`\``)
                 return;
             }

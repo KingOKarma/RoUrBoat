@@ -31,6 +31,7 @@ module.exports = {
         exec("git status", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
+                process.chdir('./src');
                 message.channel.send("I cant get the status for the repo for some reason <:RoScreaming:719628209402019980>\n That reason being ```" + error + "```\nSo i moved back into ```" + process.cwd() + "```\nCheck the termianl?") 
                 
                 return;
