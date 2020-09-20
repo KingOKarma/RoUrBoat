@@ -1,0 +1,22 @@
+{
+  "name": "rourboat",
+  "version": "1.0.0",
+  "description": "ro's boat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingOKarma/RoUrBoat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingOKarma/RoUrBoat/issues"
+  },
+  "homepage": "https://github.com/KingOKarma/RoUrBoat#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
